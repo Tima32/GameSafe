@@ -98,7 +98,10 @@ namespace Game_safe
 
             //проверка выигрыша
             if (safeLogick.IsOpen())
+            {
                 this.label1.Text = "Сейф открыт";
+                MessageBox.Show("Победа, вы открыли сейф!");
+            }
             else
                 this.label1.Text = "Сейф закрыт";
 
