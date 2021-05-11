@@ -48,6 +48,16 @@ namespace Game_safe
             // numericUpDownSize
             // 
             this.numericUpDownSize.Location = new System.Drawing.Point(12, 12);
+            this.numericUpDownSize.Maximum = new decimal(new int[] {
+            20,
+            0,
+            0,
+            0});
+            this.numericUpDownSize.Minimum = new decimal(new int[] {
+            2,
+            0,
+            0,
+            0});
             this.numericUpDownSize.Name = "numericUpDownSize";
             this.numericUpDownSize.Size = new System.Drawing.Size(115, 23);
             this.numericUpDownSize.TabIndex = 1;
@@ -56,6 +66,7 @@ namespace Game_safe
             0,
             0,
             0});
+            this.numericUpDownSize.ValueChanged += new System.EventHandler(this.numericUpDownSize_ValueChanged);
             // 
             // label1
             // 
@@ -70,7 +81,7 @@ namespace Game_safe
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(800, 450);
+            this.ClientSize = new System.Drawing.Size(467, 450);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.numericUpDownSize);
             this.Controls.Add(this.buttonStart);

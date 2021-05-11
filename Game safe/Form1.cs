@@ -113,5 +113,10 @@ namespace Game_safe
         private int checkBoxesSize = 0;
         private bool checkBoxesEventActive = true;
         private SafeLogick safeLogick = new SafeLogick();
+
+        private void numericUpDownSize_ValueChanged(object sender, EventArgs e)
+        {
+
+        }
     }
 }
