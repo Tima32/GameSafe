@@ -16,12 +16,14 @@ namespace Game_safe
         {
             this.size = size;
             handles.Clear();
+            Random rand = new Random();
+            bool active = Convert.ToBoolean(rand.Next() % 2);
             for (int x = 0; x < size; ++x)
             {
                 List<bool> colum = new List<bool>();
                 for (int y = 0; y < size; ++y)
                 {
-                    colum.Add(false);
+                    colum.Add(active);
                 }
                 handles.Add(colum);
             }
