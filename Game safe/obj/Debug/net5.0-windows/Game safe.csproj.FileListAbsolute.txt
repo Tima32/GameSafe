@@ -23,3 +23,4 @@ D:\Programming\C#\Game safe\bin\net5.0-windows\Game safe.runtimeconfig.dev.json
 D:\Programming\C#\Game safe\bin\net5.0-windows\Game safe.dll
 D:\Programming\C#\Game safe\bin\net5.0-windows\ref\Game safe.dll
 D:\Programming\C#\Game safe\bin\net5.0-windows\Game safe.pdb
+D:\Programming\C#\Game safe\Game safe\obj\Debug\net5.0-windows\Game safe.csproj.CopyComplete

@@ -15,4 +15,8 @@
     <OutputPath>bin\</OutputPath>
   </PropertyGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\SafeLibrary\SafeLibrary.csproj" />
+  </ItemGroup>
+
 </Project>

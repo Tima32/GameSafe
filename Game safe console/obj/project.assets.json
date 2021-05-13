@@ -1,11 +1,30 @@
 {
   "version": 3,
   "targets": {
-    "net5.0": {}
+    "net5.0": {
+      "SafeLibrary/1.0.0": {
+        "type": "project",
+        "framework": ".NETCoreApp,Version=v5.0",
+        "compile": {
+          "bin/placeholder/SafeLibrary.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/SafeLibrary.dll": {}
+        }
+      }
+    }
   },
-  "libraries": {},
+  "libraries": {
+    "SafeLibrary/1.0.0": {
+      "type": "project",
+      "path": "../SafeLibrary/SafeLibrary.csproj",
+      "msbuildProject": "../SafeLibrary/SafeLibrary.csproj"
+    }
+  },
   "projectFileDependencyGroups": {
-    "net5.0": []
+    "net5.0": [
+      "SafeLibrary >= 1.0.0"
+    ]
   },
   "packageFolders": {
     "C:\\Users\\Tima\\.nuget\\packages\\": {}
@@ -33,7 +52,11 @@
       "frameworks": {
         "net5.0": {
           "targetAlias": "net5.0",
-          "projectReferences": {}
+          "projectReferences": {
+            "D:\\Programming\\C#\\Game safe\\SafeLibrary\\SafeLibrary.csproj": {
+              "projectPath": "D:\\Programming\\C#\\Game safe\\SafeLibrary\\SafeLibrary.csproj"
+            }
+          }
         }
       },
       "warningProperties": {

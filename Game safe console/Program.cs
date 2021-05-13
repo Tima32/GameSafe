@@ -1,102 +1,90 @@
 ﻿using System;
 using System.Collections.Generic;
+using SafeLibrary;
+using System.Runtime.InteropServices;
+using System.Threading;
 
 namespace Game_safe_console
 {
     class Program
     {
-        class SafeLogick
-        {
-            public SafeLogick() { handles = new List<List<bool>>(); }
-            public void SetSize(int size)
-            {
-                this.size = size;
-                handles.Clear();
-                Random rand = new Random();
-                bool active = Convert.ToBoolean(rand.Next() % 2);
-                for (int x = 0; x < size; ++x)
-                {
-                    List<bool> colum = new List<bool>();
-                    for (int y = 0; y < size; ++y)
-                    {
-                        colum.Add(active);
-                    }
-                    handles.Add(colum);
-                }
-            }
-
-            public void Randomization()
-            {
-                Random rand = new Random();
-                for (int i = 0; i < size * size; ++i)
-                {
-                    int x = rand.Next() % size;
-                    int y = rand.Next() % size;
-
-                    Turn(x, y);
-                }
-                if (IsOpen())
-                    Randomization();
-            }
-
-            public void Turn(int xp, int yp)
-            {
-                for (int x = 0; x < size; ++x)
-                    handles[x][yp] = !handles[x][yp];
-
-                for (int y = 0; y < size; ++y)
-                {
-                    if (yp != y)
-                        handles[xp][y] = !handles[xp][y];
-                }
-            }
-
-            public bool IsOpen()
-            {
-                for (int x = 0; x < size; ++x)
-                {
-                    for (int y = 0; y < size; ++y)
-                    {
-                        if (handles[0][0] != handles[x][y])
-                            return false;
-                    }
-                }
-
-                return true;
-            }
-
-            public List<List<bool>> handles; //true - горизонтально
-            public int size = 0;
-        }
         static void Main(string[] args)
         {
+            ConsoleToolInit();
             origRow = Console.CursorTop;
             origCol = Console.CursorLeft;
+            Console.Write("Режим с курсором - true | без - false: ");
+            while (true)
+            {
+                try
+                {
+                    cursor_mode = Convert.ToBoolean(Console.ReadLine());
+                    if (cursor_mode == true)
+                    {
+                        Console.WriteLine("Переключать ручки можно левой или правой кнопками мыши.\nЧтобы, работал левый клик необходимо отключить выделение в настройках консоли.");
+                    }
+                    break;
+                }
+                catch
+                {
+                    Console.WriteLine("Неверный формат. Попробуйте сново.");
+                }
+            }
             Console.Write("Размер поля: ");
-            size = Convert.ToInt32(Console.ReadLine());
-            Console.Write(size);
+            while (true)
+            {
+                try
+                {
+                    size = Convert.ToInt32(Console.ReadLine());
+                    break;
+                }
+                catch
+                {
+                    Console.WriteLine("Неверный формат. Попробуйте сново.");
+                }
+            }
+            //Console.Write(size);
             sl.SetSize(size);
             sl.Randomization();
+            Console.Clear();
 
             drawMap();
             while (true)
             {
                 if (cursor_mode)
                 {
-                    
+                    try
+                    {
+                        int x, y;
+                        if(GetMousePos(out x, out y))
+                            sl.Turn(x, y);
+                    }
+                    catch
+                    {
+
+                    }
                 }
                 else
                 {
-                    Console.Write("x ручки: ");
-                    int x = Convert.ToInt32(Console.ReadLine());
-                    Console.Write("y ручки: ");
-                    int y = Convert.ToInt32(Console.ReadLine());
-                    sl.Turn(x, y);
+                    try
+                    {
+                        Console.Write("x ручки: ");
+                        int x = Convert.ToInt32(Console.ReadLine());
+                        Console.Write("y ручки: ");
+                        int y = Convert.ToInt32(Console.ReadLine());
+                        sl.Turn(x, y);
+                    }
+                    catch
+                    {
+                        Console.WriteLine("Вы ввели не правельно координаты ручки.\nНажмите Enter.");
+                        Console.ReadLine();
+                    }
                 }
                 reDrawMap();
                 if (sl.IsOpen())
                 {
                     Console.WriteLine("Сейф открыт");
+                    Console.Read();
                     return;
                 }
             }
@@ -104,36 +92,36 @@ namespace Game_safe_console
         static void drawMap()
         {
             Console.Clear();
-            for(int x = 0; x < size; ++x)
+            for (int x = 0; x < size; ++x)
             {
                 for (int y = 0; y < size; ++y)
                 {
-                    WriteAt(sl.handles[x][y] ? "+" : "-", x, y);
+                    WriteAt(sl[x][y] ? "+" : "-", x, y);
                 }
             }
             Console.WriteLine();
-            CopyMap(sl.handles);
+            CopyMap(sl);
         }
         static void reDrawMap()
         {
             if (!cursor_mode)
             {
-                int c_top = Console.CursorTop;
-                Console.SetCursorPosition(0, Console.CursorTop - 1);
-                Console.Write(new string(' ', Console.WindowWidth));
-                Console.SetCursorPosition(0, Console.CursorTop - 1);
-                Console.Write(new string(' ', Console.WindowWidth));
+                for (int c_top = Console.CursorTop; size != Console.CursorTop; --c_top)
+                {
+                    Console.SetCursorPosition(0, c_top);
+                    Console.Write(new string(' ', Console.WindowWidth));
+                }
             }
             for (int x = 0; x < size; ++x)
             {
                 for (int y = 0; y < size; ++y)
                 {
-                    if (drawn_map[x][y] != sl.handles[x][y])
-                        WriteAt(sl.handles[x][y] ? "+" : "-", x, y);
+                    if (drawn_map[x][y] != sl[x][y])
+                        WriteAt(sl[x][y] ? "+" : "-", x, y);
                 }
             }
             Console.SetCursorPosition(0, size);
-            CopyMap(sl.handles);
+            CopyMap(sl);
         }
         static void WriteAt(string s, int x, int y)
         {
@@ -161,9 +149,14 @@ namespace Game_safe_console
         static int size = 0;
         static SafeLogick sl = new SafeLogick();
 
-        static bool cursor_mode = false;
+        static bool cursor_mode = true;
         static int origRow;
         static int origCol;
         static List<List<bool>> drawn_map = new List<List<bool>>();
+
+        [DllImport("..\\ConsoleTool\\ConsoleTool.dll", CallingConvention = CallingConvention.Cdecl)]
+        static extern void ConsoleToolInit();
+        [DllImport("..\\ConsoleTool\\ConsoleTool.dll", CallingConvention = CallingConvention.Cdecl)]
+        static extern bool GetMousePos(out Int32 x, out Int32 y);
     }
 }

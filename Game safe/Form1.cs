@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using SafeLibrary;
 
 namespace Game_safe
 {
@@ -47,7 +48,7 @@ namespace Game_safe
                 for (int y = 0; y < checkBoxesSize; ++y)
                 {
                     CheckBox cb = new CheckBox();
-                    cb.Checked = safeLogick.handles[x][y];
+                    cb.Checked = safeLogick[x][y];
                     cb.Location = new Point(x * 20, y * 20 + 40);
                     cb.Size = new Size(20, 20);
                     cb.CheckedChanged += new System.EventHandler(checkBoxChanged);
@@ -92,7 +93,7 @@ namespace Game_safe
             {
                 for (int y = 0; y < checkBoxesSize; ++y)
                 {
-                    checkBoxes[x][y].Checked = safeLogick.handles[x][y];
+                    checkBoxes[x][y].Checked = safeLogick[x][y];
                 }
             }
 

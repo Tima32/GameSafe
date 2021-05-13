@@ -7,14 +7,27 @@
   "targets": {
     ".NETCoreApp,Version=v5.0": {
       "Game safe/1.0.0": {
+        "dependencies": {
+          "SafeLibrary": "1.0.0"
+        },
         "runtime": {
           "Game safe.dll": {}
+        }
+      },
+      "SafeLibrary/1.0.0": {
+        "runtime": {
+          "SafeLibrary.dll": {}
         }
       }
     }
   },
   "libraries": {
     "Game safe/1.0.0": {
+      "type": "project",
+      "serviceable": false,
+      "sha512": ""
+    },
+    "SafeLibrary/1.0.0": {
       "type": "project",
       "serviceable": false,
       "sha512": ""

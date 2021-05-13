@@ -1,0 +1,12 @@
+D:\Programming\C#\Game safe\SafeLibrary\bin\Debug\net5.0\SafeLibrary.deps.json
+D:\Programming\C#\Game safe\SafeLibrary\bin\Debug\net5.0\SafeLibrary.dll
+D:\Programming\C#\Game safe\SafeLibrary\bin\Debug\net5.0\ref\SafeLibrary.dll
+D:\Programming\C#\Game safe\SafeLibrary\bin\Debug\net5.0\SafeLibrary.pdb
+D:\Programming\C#\Game safe\SafeLibrary\obj\Debug\net5.0\SafeLibrary.csprojAssemblyReference.cache
+D:\Programming\C#\Game safe\SafeLibrary\obj\Debug\net5.0\SafeLibrary.GeneratedMSBuildEditorConfig.editorconfig
+D:\Programming\C#\Game safe\SafeLibrary\obj\Debug\net5.0\SafeLibrary.AssemblyInfoInputs.cache
+D:\Programming\C#\Game safe\SafeLibrary\obj\Debug\net5.0\SafeLibrary.AssemblyInfo.cs
+D:\Programming\C#\Game safe\SafeLibrary\obj\Debug\net5.0\SafeLibrary.csproj.CoreCompileInputs.cache
+D:\Programming\C#\Game safe\SafeLibrary\obj\Debug\net5.0\SafeLibrary.dll
+D:\Programming\C#\Game safe\SafeLibrary\obj\Debug\net5.0\ref\SafeLibrary.dll
+D:\Programming\C#\Game safe\SafeLibrary\obj\Debug\net5.0\SafeLibrary.pdb
