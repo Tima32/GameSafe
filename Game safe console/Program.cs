@@ -69,9 +69,9 @@ namespace Game_safe_console
                     try
                     {
                         Console.Write("x ручки: ");
-                        int x = Convert.ToInt32(Console.ReadLine());
+                        int x = Convert.ToInt32(Console.ReadLine()) - 1;
                         Console.Write("y ручки: ");
-                        int y = Convert.ToInt32(Console.ReadLine());
+                        int y = Convert.ToInt32(Console.ReadLine()) - 1;
                         sl.Turn(x, y);
                     }
                     catch
